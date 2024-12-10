@@ -1,6 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
+	let waypointCount = 0;
 
 	let woodenLinkContainer = $('#wooden-link-container');
 	if (woodenLinkContainer) {
@@ -52,14 +53,17 @@ $(document).ready(function () {
 	}
 
 	$('#content').waypoint(function (direction) {
+		waypointCount += 1;
 		if (direction === 'down') {
 			$('#header').addClass('nav-solid fadeInDown');
 		}
 		else {
 			$('#header').removeClass('nav-solid fadeInDown');
 		}
+		if (waypointCount === 1) {
+			$('.gallery-header').removeClass('nav-solid fadeInDown');
+		}
 	});
-
 });
 
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bulk Image Upload</title>
+    <link rel="stylesheet" href="/admin/public/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Admin Bulk Image Upload</h1>
+
+<!--    <form id="upload-form" enctype="multipart/form-data">-->
+<!--        &lt;!&ndash; Image file input &ndash;&gt;-->
+<!--        <label for="images">Select Images:</label>-->
+<!--        <input type="file" name="images" id="images" multiple required><br><br>-->
+
+<!--        &lt;!&ndash; Category selection (checkboxes) &ndash;&gt;-->
+<!--        <label>Select Categories:</label><br>-->
+
+<!--        <input type="checkbox" name="categories" value="bathroom" id="bathroom"> bathroom-->
+<!--        <input type="checkbox" name="categories" value="bed" id="bed"> bed-->
+<!--        <input type="checkbox" name="categories" value="chair" id="chair"> chair-->
+<!--        <input type="checkbox" name="categories" value="cradle" id="cradle"> cradle-->
+<!--        <input type="checkbox" name="categories" value="guestroom" id="guestroom"> guestroom-->
+<!--        <input type="checkbox" name="categories" value="kitchen" id="kitchen"> kitchen-->
+<!--        <input type="checkbox" name="categories" value="office" id="office"> office-->
+<!--        <input type="checkbox" name="categories" value="table" id="table"> table-->
+<!--        <input type="checkbox" name="categories" value="tvstand" id="tvstand"> tvstand-->
+<!--        <input type="checkbox" name="categories" value="wardrobe" id="wardrobe"> wardrobe-->
+<!--        <input type="checkbox" name="categories" value="wooden" id="wooden"> wooden-->
+<!--        <br><br>-->
+
+<!--        &lt;!&ndash; Display selected images (Preview) &ndash;&gt;-->
+<!--        <div id="image-preview" class="preview-container"></div>-->
+
+<!--        &lt;!&ndash; Submit button &ndash;&gt;-->
+<!--        <input type="submit" value="Upload">-->
+<!--    </form>-->
+
+    <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- Categories Section -->
+        <input type="checkbox" name="categories" value="bathroom" id="bathroom"> bathroom
+        <input type="checkbox" name="categories" value="bed" id="bed"> bed
+        <input type="checkbox" name="categories" value="chair" id="chair"> chair
+        <input type="checkbox" name="categories" value="cradle" id="cradle"> cradle
+        <input type="checkbox" name="categories" value="guestroom" id="guestroom"> guestroom
+        <input type="checkbox" name="categories" value="kitchen" id="kitchen"> kitchen
+        <input type="checkbox" name="categories" value="office" id="office"> office
+        <input type="checkbox" name="categories" value="table" id="table"> table
+        <input type="checkbox" name="categories" value="tvstand" id="tvstand"> tvstand
+        <input type="checkbox" name="categories" value="wardrobe" id="wardrobe"> wardrobe
+        <input type="checkbox" name="categories" value="wooden" id="wooden"> wooden
+        <br><br>
+
+        <div id="image-preview" class="preview-container"></div>
+
+        <!-- File upload section -->
+        <input type="file" name="images" id="images" multiple><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="response-message"></div>
+    <div id="imageList">
+        <!-- Images will be displayed here after upload -->
+    </div>
+</div>
+
+<script src="/admin/public/scripts.js"></script>
+</body>
+</html>
