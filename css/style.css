@@ -1048,6 +1048,7 @@ blockquote {
     height: 100%;
     align-items: center;
     color: #111111;
+    text-align: center;
 }
 
 .nav-custom .active {
@@ -1650,9 +1651,9 @@ blockquote {
     align-items: center;
 }
 
-.section-title {
-    word-break: break-all;
-}
+/*.section-title {*/
+/*    word-break: break-all;*/
+/*}*/
 
 .pricing-block-content {
     background: #fff;

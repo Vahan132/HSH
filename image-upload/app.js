@@ -43,7 +43,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Handle file upload
-app.post('admin/upload', upload.array('images', 10), (req, res) => {
+app.post('/admin/upload', upload.array('images', 10), (req, res) => {
     // Log the received categories for debugging
     console.log('Categories received:', req.body.categories);
 
@@ -66,7 +66,7 @@ app.post('admin/upload', upload.array('images', 10), (req, res) => {
     res.json({ message: 'Files uploaded successfully!' });
 });
 
-app.delete('admin/delete/:category/:filename', (req, res) => {
+app.delete('/admin/delete/:category/:filename', (req, res) => {
     const category = req.params.category;
     const filename = req.params.filename;
     const filePath = path.join(__dirname, 'uploads', category, filename);
@@ -87,7 +87,7 @@ app.delete('admin/delete/:category/:filename', (req, res) => {
     });
 });
 
-app.get('admin/get-images', (req, res) => {
+app.get('/admin/get-images', (req, res) => {
     const imageDir = path.join(__dirname, 'uploads');
     fs.readdir(imageDir, (err, categories) => {
         if (err) {
@@ -140,8 +140,12 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // Update the path if it's in a different directory
 });
 
+app.get('/gallery', (req, res) => {
+    res.sendFile(path.join(__dirname, 'gallery.html')); // Update the path if it's in a different directory
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

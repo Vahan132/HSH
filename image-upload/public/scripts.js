@@ -16,7 +16,7 @@ checkboxes.forEach((checkbox) => {
 
 function loadImages() {
     // Fetch the uploaded images from the server
-    fetch("https://hshfurnitures.com/get-images")
+    fetch("https://hshfurnitures.com/admin/get-images")
         .then((response) => response.json())
         .then((data) => {
             const imageListDiv = document.getElementById("imageList");
@@ -35,7 +35,7 @@ function loadImages() {
 }
 
 function deleteImage(category, filename) {
-    fetch(`https://hshfurnitures.com/delete/${category}/${filename}`, {
+    fetch(`https://hshfurnitures.com/admin/delete/${category}/${filename}`, {
         method: "DELETE"
     })
         .then((response) => response.json())
@@ -94,7 +94,7 @@ form.addEventListener('submit', (event) => {
     const responseMessage = document.getElementById('response-message');
     responseMessage.textContent = 'Uploading images...';
 
-    fetch('https://hshfurnitures.com/upload', {
+    fetch('https://hshfurnitures.com/admin/upload', {
         method: 'POST',
         body: formData
     })

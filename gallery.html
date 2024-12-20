@@ -70,41 +70,41 @@
                     </div>
                     <!--End of Logo-->
                     <div class="nav-custom">
-                        <a href="#bathroom">bathroom</a>
-                        <a href="#bed">bed</a>
-                        <a href="#chair">chair</a>
-                        <a href="#cradle">cradle</a>
-                        <a href="#guestroom">guestroom</a>
-                        <a href="#kitchen">kitchen
+                        <a href="#bathroom" id="nav-bathroom">Լոգարան</a>
+                        <a href="#bed" id="nav-bed">Մահճակալ</a>
+                        <a href="#chair" id="nav-chair">Աթոռ</a>
+                        <a href="#cradle" id="nav-cradle">Օրորոց</a>
+                        <a href="#guestroom" id="nav-guestroom">Հյուրասենյակ</a>
+                        <a href="#kitchen" id="nav-kitchen">Խոհանոց
                         </a>
-                        <a href="#office">office
+                        <a href="#office" id="nav-office">Գրասենյակ
                         </a>
-                        <a href="#table">table
+                        <a href="#table" id="nav-table">Սեղան
                         </a>
-                        <a href="#tvstand">tvstand
+                        <a href="#tvstand" id="nav-tvstand">Հեռուստացույցի տակդիր
                         </a>
-                        <a href="#wardrobe">wardrobe
+                        <a href="#wardrobe" id="nav-wardrobe">Պահարան
                         </a>
-                        <a href="#wooden">wooden
+                        <a href="#wooden" id="nav-wooden">Փայտյա աքսեսուարներ
                         </a>
                     </div>
                     <div class="nav-custom-mobile">
-                        <a href="#bathroom">bathroom</a>
-                        <a href="#bed">bed</a>
-                        <a href="#chair">chair</a>
-                        <a href="#cradle">cradle</a>
-                        <a href="#guestroom">guestroom</a>
-                        <a href="#kitchen">kitchen
+                        <a href="#bathroom" id="nav-bathroom-mobile">Լոգարան</a>
+                        <a href="#bed" id="nav-bed-mobile">Մահճակալ</a>
+                        <a href="#chair" id="nav-chair-mobile">Աթոռ</a>
+                        <a href="#cradle" id="nav-cradle-mobile">Օրորոց</a>
+                        <a href="#guestroom" id="nav-guestroom-mobile">Հյուրասենյակ</a>
+                        <a href="#kitchen" id="nav-kitchen-mobile">Խոհանոց
                         </a>
-                        <a href="#office">office
+                        <a href="#office" id="nav-office-mobile">Գրասենյակ
                         </a>
-                        <a href="#table">table
+                        <a href="#table" id="nav-table-mobile">Սեղան
                         </a>
-                        <a href="#tvstand">tvstand
+                        <a href="#tvstand" id="nav-tvstand-mobile">Հեռուստացույցի տակդիր
                         </a>
-                        <a href="#wardrobe">wardrobe
+                        <a href="#wardrobe" id="nav-wardrobe-mobile">Պահարան
                         </a>
-                        <a href="#wooden">wooden
+                        <a href="#wooden" id="nav-wooden-mobile">Փայտյա աքսեսուարներ
                         </a>
                     </div>
                     <div class="custom-mobile-links">
@@ -126,8 +126,6 @@
     <main id="content">
         <aside id="bathroom" class="row text-center scrollto clearfix asides" data-featherlight-gallery
                data-featherlight-filter="a">
-            <a href="images/gallery-images/gallery-image-1.jpg" data-featherlight="image" class="col-3 wow fadeIn"
-               data-wow-delay="0.1s"><img src="images/gallery-images/gallery-image-1.jpg" alt="Landing Page"/></a>
         </aside>
         <aside id="bed" class="row text-center scrollto clearfix asides" data-featherlight-gallery
                data-featherlight-filter="a">
@@ -164,7 +162,7 @@
     <footer id="landing-footer" class="clearfix">
         <div class="row clearfix">
 
-            <p id="copyright" class="col-2">Made with love by happy customers</p>
+            <p id="copyright" class="col-2">Made with love</p>
 
             <!--Social Icons in Footer-->
             <ul class="col-2 social-icons">
@@ -213,11 +211,13 @@
 <script>
     $(window).load(function () {
         let lastActiveIndex = 0;
+        let isMobile = false;
         if (window.innerWidth <= 1100) {
             $('.nav-custom')[0].style.display = 'none'
             $('#nav-trigger-custom span').addClass('show')
             $('#content').children()[lastActiveIndex].style.display = 'flex';
             $($('.nav-custom-mobile').children()[lastActiveIndex]).addClass('active');
+            isMobile = true;
         } else {
             $('#content').children()[lastActiveIndex].style.display = 'flex';
             $($('.nav-custom').children()[lastActiveIndex]).addClass('active');
@@ -260,18 +260,30 @@
             })
         })
 
-        fetch("http://localhost:3000/get-images-by")
+        fetch("https://galllery.hshfurnitures.com/admin/get-images-by")
             .then((response) => response.json())
             .then((data) => {
                 for (let key in data.imagesBy) {
                     data.imagesBy[key].images.forEach((image) => {
                         const imgAside = document.getElementById(image.category);
                         imgAside.innerHTML += `
-                    <a href="image-upload/uploads/${image.category}/${image.filename}" data-featherlight="image" class="col-3 wow fadeIn"
-           data-wow-delay="0.1s"><img src="image-upload/uploads/${image.category}/${image.filename}" alt="${image.filename}"/></a>`;
+                    <a href="uploads/${image.category}/${image.filename}" data-featherlight="image" class="col-3 wow fadeIn"
+           data-wow-delay="0.1s"><img src="uploads/${image.category}/${image.filename}" alt="${image.filename}"/></a>`;
                     });
                 }
-            });
+           });
+
+        if (window.location.hash !== '') {
+            let locHash = window.location.hash;
+            locHash = locHash.substring(1);
+            let element;
+            if (isMobile) {
+                element = $(`#nav-${locHash}-mobile`);
+            } else {
+                element = $(`#nav-${locHash}`);
+            }
+            element.click();
+        }
     })
 </script>
 </body>
